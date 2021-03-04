@@ -30,7 +30,9 @@ int main(int argc, const char * argv[]) {
         }
     }
 
-    for (;;) {}
+    sleep(4);
+
+    CGDisplayRestoreColorSyncSettings();
 
     return 0;
 }
