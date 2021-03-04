@@ -1,14 +1,14 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 int main(int argc, const char * argv[]) {
-    const CGGammaValue gamma[2] = {1, 0};
+    const CGGammaValue inverted_gamma[2] = {1, 0};
 
     CGError error = CGSetDisplayTransferByTable(
         CGMainDisplayID(),
         2,
-        gamma,
-        gamma,
-        gamma
+        inverted_gamma,
+        inverted_gamma,
+        inverted_gamma
     );
 
     if (error != kCGErrorSuccess) {
