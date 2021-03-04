@@ -13,7 +13,7 @@ int main(int argc, const char * argv[]) {
         gamma
     );
 
-    sleep(5);
+    for (;;) {}
 
     return 0;
 }
