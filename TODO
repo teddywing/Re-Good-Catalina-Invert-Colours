@@ -1,7 +1,13 @@
 TODO
 
 2021.03.07:
-- DDHotKey modifier key symbols
-- Handle errors
-- Log errors when toggling
-- Static variables
+v DDHotKey modifier key symbols
+v Handle errors
+v Log errors when toggling
+v Static variables
+v Fix Makefile
+v Distribution
+v Lower the macosx-version-min
+v Publish DDHotKey fork
+v README
+v Version
