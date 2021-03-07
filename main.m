@@ -1,7 +1,11 @@
 #import <Carbon/Carbon.h>
 
+#include <sysexits.h>
+
 #import "Invert.h"
 #import "DDHotKeyCenter.h"
+
+#define E_REGISTER_HOTKEY 5
 
 int register_hotkeys();
 
@@ -11,6 +15,9 @@ int main(int argc, const char * argv[]) {
     [NSApplication sharedApplication];
 
     int error_code = register_hotkeys();
+    if (error_code == E_REGISTER_HOTKEY) {
+        return EX_SOFTWARE;
+    }
 
     [NSApp run];
 
@@ -29,7 +36,9 @@ int register_hotkeys() {
             action:@selector(toggleInvertColors:)
             object:nil]
     ) {
-        NSLog(@"Error registering hotkey");
+        NSLog(@"Error registering hotkey Apple+Option+Control-8");
+
+        return E_REGISTER_HOTKEY;
     }
 
     if (
@@ -39,7 +48,9 @@ int register_hotkeys() {
             action:@selector(toggleInvertColors:)
             object:nil]
     ) {
-        NSLog(@"Error registering hotkey");
+        NSLog(@"Error registering hotkey F8");
+
+        return E_REGISTER_HOTKEY;
     }
 
     return 0;
