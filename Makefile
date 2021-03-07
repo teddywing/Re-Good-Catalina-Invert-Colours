@@ -48,3 +48,10 @@ $(BUILD_DIR):
 
 $(LOCAL_INCLUDE_DIR): | $(BUILD_DIR)
 	mkdir -p $@
+
+
+.PHONY: clean
+clean:
+	rm -rf $(RELEASE_PRODUCT) \
+		$(BUILD_DIR) \
+		$(DDHOTKEY_OBJ)
