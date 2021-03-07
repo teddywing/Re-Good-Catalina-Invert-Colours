@@ -2,6 +2,8 @@
 
 #define MAX_DISPLAYS 8
 
+static const CGGammaValue INVERTED_GAMMA[2] = {1, 0};
+
 @implementation Invert
 
 - (id)init
@@ -31,8 +33,6 @@
 
 - (void)invertColors
 {
-    const CGGammaValue inverted_gamma[2] = {1, 0};
-
     CGDirectDisplayID active_displays[MAX_DISPLAYS];
     uint32_t display_count;
 
@@ -49,9 +49,9 @@
         error = CGSetDisplayTransferByTable(
             active_displays[i],
             2,
-            inverted_gamma,
-            inverted_gamma,
-            inverted_gamma
+            INVERTED_GAMMA,
+            INVERTED_GAMMA,
+            INVERTED_GAMMA
         );
         if (error != kCGErrorSuccess) {
             // TODO: error handling
