@@ -24,6 +24,12 @@ BUILD_DIR := $(abspath build)
 LOCAL_INCLUDE_DIR := $(BUILD_DIR)/include
 
 RELEASE_PRODUCT := invert-catalina-invert
+LAUNCHD_PLIST := Library/LaunchAgents/com.teddywing.invert-catalina-invert.plist
+VERSION := $(shell awk -F '"' '/static const char \*VERSION/ { print $$2 }' main.m)
+
+DIST := $(abspath dist)
+DIST_PRODUCT := $(DIST)/bin/$(RELEASE_PRODUCT)
+DIST_LAUNCHD_PLIST := $(DIST)/$(LAUNCHD_PLIST)
 
 
 .PHONY: all
@@ -72,4 +78,31 @@ $(LOCAL_INCLUDE_DIR): | $(BUILD_DIR)
 clean:
 	rm -rf $(RELEASE_PRODUCT) \
 		$(BUILD_DIR) \
-		$(DDHOTKEY_OBJ)
+		$(DDHOTKEY_OBJ) \
+		$(DIST)
+
+
+.PHONY: dist
+dist: $(DIST_PRODUCT) $(DIST_LAUNCHD_PLIST)
+
+$(DIST):
+	mkdir -p $@
+
+$(DIST)/bin: | $(DIST)
+	mkdir -p $@
+
+$(DIST)/Library/LaunchAgents: | $(DIST)
+	mkdir -p $@
+
+$(DIST_PRODUCT): $(DIST)/bin $(RELEASE_PRODUCT)
+	cp $(RELEASE_PRODUCT) $<
+
+$(DIST_LAUNCHD_PLIST): $(DIST)/Library/LaunchAgents $(LAUNCHD_PLIST)
+	cp $(LAUNCHD_PLIST) $<
+
+
+.PHONY: pkg
+pkg: invert-catalina-invert_$(VERSION)_x86_64.tar.bz2
+
+invert-catalina-invert_$(VERSION)_x86_64.tar.bz2: dist
+	tar cjv -s /dist/invert-catalina-invert_$(VERSION)_x86_64/ -f $@ dist
