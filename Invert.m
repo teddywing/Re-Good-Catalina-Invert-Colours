@@ -40,7 +40,7 @@ static const CGGammaValue INVERTED_GAMMA[2] = {1, 0};
         &display_count
     );
     if (error != kCGErrorSuccess) {
-        // return 69;
+        NSLog(@"Error getting active displays: %d", error);
     }
 
     for (int i = 0; i < display_count; i++) {
@@ -52,7 +52,11 @@ static const CGGammaValue INVERTED_GAMMA[2] = {1, 0};
             INVERTED_GAMMA
         );
         if (error != kCGErrorSuccess) {
-            // TODO: error handling
+            NSLog(
+                @"Error inverting display '%d': %d",
+                active_displays[i],
+                error
+            );
         }
     }
 }
