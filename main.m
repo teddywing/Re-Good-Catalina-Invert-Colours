@@ -20,9 +20,6 @@ int main(int argc, const char * argv[]) {
         NSLog(@"Error registering hotkey");
     }
 
-    // for (;;) {}
-    // sleep(4);
-
     // TODO: trap?
     // [invert release];
 
