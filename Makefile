@@ -5,6 +5,7 @@ DDHOTKEY_OBJ := $(patsubst %.m,%.o,$(wildcard lib/DDHotKey/*.m))
 
 all: $(SOURCES) build/libddhotkey.a build/include/*.h
 	clang -x objective-c \
+		-mmacosx-version-min=10.7 \
 		-framework Carbon \
 		-framework Cocoa \
 		-framework CoreGraphics \
@@ -21,6 +22,7 @@ build/include/%.h: lib/DDHotKey/%.h
 
 lib/DDHotKey/%.o: lib/DDHotKey/%.m
 	clang -x objective-c \
+		-mmacosx-version-min=10.7 \
 		-fobjc-arc \
 		-c \
 		$<
