@@ -16,7 +16,7 @@ all: $(SOURCES) build/libddhotkey.a build/include/*.h
 		-o invert-catalina-invert \
 		$(SOURCES)
 
-build/include/*.h: lib/DDHotKey/*.h
+build/include/%.h: lib/DDHotKey/%.h
 	cp $^ build/include/
 
 lib/DDHotKey/%.o: lib/DDHotKey/%.m
