@@ -5,8 +5,12 @@ DDHOTKEY_OBJ := $(patsubst %.m,%.o,$(wildcard lib/DDHotKey/*.m))
 BUILD_DIR := $(abspath build)
 LOCAL_INCLUDE_DIR := $(BUILD_DIR)/include
 
+RELEASE_PRODUCT := invert-catalina-invert
 
-all: $(SOURCES) build/libddhotkey.a build/include/*.h
+
+all: $(RELEASE_PRODUCT)
+
+$(RELEASE_PRODUCT): $(SOURCES) build/libddhotkey.a build/include/*.h
 	clang -x objective-c \
 		-mmacosx-version-min=10.7 \
 		-framework Carbon \
