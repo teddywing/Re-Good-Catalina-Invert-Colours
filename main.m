@@ -22,6 +22,16 @@ int main(int argc, const char * argv[]) {
         NSLog(@"Error registering hotkey");
     }
 
+    if (
+        ![c registerHotKeyWithKeyCode:kVK_F8
+            modifierFlags:0
+            target:invert
+            action:@selector(toggleInvertColors:)
+            object:nil]
+    ) {
+        NSLog(@"Error registering hotkey");
+    }
+
     [NSApp run];
 
     return 0;
