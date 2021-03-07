@@ -4,9 +4,11 @@
 #import "DDHotKeyCenter.h"
 
 int main(int argc, const char * argv[]) {
+    [NSAutoreleasePool new];
+
     [NSApplication sharedApplication];
 
-    Invert *invert = [[Invert alloc] init];
+    Invert *invert = [[[Invert alloc] init] autorelease];
 
     DDHotKeyCenter *c = [DDHotKeyCenter sharedHotKeyCenter];
     if (
@@ -19,9 +21,6 @@ int main(int argc, const char * argv[]) {
     ) {
         NSLog(@"Error registering hotkey");
     }
-
-    // TODO: trap?
-    // [invert release];
 
     [NSApp run];
 
