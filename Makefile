@@ -9,6 +9,7 @@ all: $(SOURCES) build/libddhotkey.a build/include/*.h
 		-framework Carbon \
 		-framework Cocoa \
 		-framework CoreGraphics \
+		-framework CoreServices \
 		-framework Foundation \
 		-fno-objc-arc \
 		-I./build/include \
