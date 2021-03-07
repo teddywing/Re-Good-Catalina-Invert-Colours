@@ -25,6 +25,7 @@ Toggle inverted colours with either of the following global keyboard shortcuts:
 ## Install
 
 	$ brew install teddywing/formulae/invert-catalina-invert
+	$ brew services start teddywing/formulae/invert-catalina-invert
 
 
 ## Build
