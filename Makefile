@@ -27,7 +27,7 @@ lib/DDHotKey/%.o: lib/DDHotKey/%.m
 		-framework Foundation \
 		-fobjc-arc \
 		-c \
-		$^
+		$<
 
 	mv *.o lib/DDHotKey/
 
