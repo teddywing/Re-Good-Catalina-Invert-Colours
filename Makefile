@@ -22,9 +22,6 @@ build/include/*.h: lib/DDHotKey/*.h
 lib/DDHotKey/%.o: lib/DDHotKey/%.m
 	clang -x objective-c \
 		-w \
-		-framework Carbon \
-		-framework Cocoa \
-		-framework Foundation \
 		-fobjc-arc \
 		-c \
 		$<
