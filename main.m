@@ -23,7 +23,7 @@
 #import "Invert.h"
 #import "DDHotKeyCenter.h"
 
-#define E_REGISTER_HOTKEY 5
+static const int E_REGISTER_HOTKEY = 5;
 
 int register_hotkeys();
 
