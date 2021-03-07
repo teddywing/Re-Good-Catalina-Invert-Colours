@@ -23,11 +23,22 @@
 #import "Invert.h"
 #import "DDHotKeyCenter.h"
 
+static const char *VERSION = "0.0.1";
+
 static const int E_REGISTER_HOTKEY = 5;
 
 int register_hotkeys();
 
 int main(int argc, const char * argv[]) {
+    if (argc > 1 && (
+        strcmp("-V", argv[1]) == 0
+        || strcmp("--version", argv[1]) == 0
+    )) {
+        printf("%s\n", VERSION);
+
+        return 0;
+    }
+
     [NSAutoreleasePool new];
 
     [NSApplication sharedApplication];
