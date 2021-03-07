@@ -3,11 +3,21 @@
 #import "Invert.h"
 #import "DDHotKeyCenter.h"
 
+int register_hotkeys();
+
 int main(int argc, const char * argv[]) {
     [NSAutoreleasePool new];
 
     [NSApplication sharedApplication];
 
+    int error_code = register_hotkeys();
+
+    [NSApp run];
+
+    return 0;
+}
+
+int register_hotkeys() {
     Invert *invert = [[[Invert alloc] init] autorelease];
 
     DDHotKeyCenter *c = [DDHotKeyCenter sharedHotKeyCenter];
@@ -31,8 +41,6 @@ int main(int argc, const char * argv[]) {
     ) {
         NSLog(@"Error registering hotkey");
     }
-
-    [NSApp run];
 
     return 0;
 }
