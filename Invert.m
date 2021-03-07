@@ -17,8 +17,6 @@ static const CGGammaValue INVERTED_GAMMA[2] = {1, 0};
 
 - (void)toggleInvertColors:(NSEvent *)event
 {
-    NSLog(@"Toggling");
-
     if (!_inverted) {
         [self invertColors];
 
