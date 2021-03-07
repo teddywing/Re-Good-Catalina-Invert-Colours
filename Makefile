@@ -8,6 +8,7 @@ LOCAL_INCLUDE_DIR := $(BUILD_DIR)/include
 RELEASE_PRODUCT := invert-catalina-invert
 
 
+.PHONY: all
 all: $(RELEASE_PRODUCT)
 
 $(RELEASE_PRODUCT): $(SOURCES) build/libddhotkey.a build/include/*.h
