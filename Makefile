@@ -2,6 +2,9 @@ SOURCES := $(shell ls *.{h,m})
 
 DDHOTKEY_OBJ := $(patsubst %.m,%.o,$(wildcard lib/DDHotKey/*.m))
 
+BUILD_DIR := $(abspath build)
+LOCAL_INCLUDE_DIR := $(BUILD_DIR)/include
+
 
 all: $(SOURCES) build/libddhotkey.a build/include/*.h
 	clang -x objective-c \
@@ -18,7 +21,7 @@ all: $(SOURCES) build/libddhotkey.a build/include/*.h
 		-o invert-catalina-invert \
 		$(SOURCES)
 
-build/include/%.h: lib/DDHotKey/%.h
+build/include/%.h: lib/DDHotKey/%.h | $(LOCAL_INCLUDE_DIR)
 	cp $^ build/include/
 
 lib/DDHotKey/%.o: lib/DDHotKey/%.m
@@ -30,7 +33,13 @@ lib/DDHotKey/%.o: lib/DDHotKey/%.m
 
 	mv *.o lib/DDHotKey/
 
-build/libddhotkey.a: $(DDHOTKEY_OBJ)
+build/libddhotkey.a: $(DDHOTKEY_OBJ) | $(BUILD_DIR)
 	libtool -static \
 		-o $@ \
 		$^
+
+$(BUILD_DIR):
+	mkdir -p $@
+
+$(LOCAL_INCLUDE_DIR): | $(BUILD_DIR)
+	mkdir -p $@
